@@ -10,28 +10,24 @@ server.connection({
     host : 'localhost'
 });
 
-server.register(require('inert'), function (err) {
+server.register(require('inert'), function(err){
 
-    if (err) {
-        throw err;
-    }
-
-    server.route({
-        method : 'GET',
-        path : '/{param*}',
-        handler : {
-
-            directory : {
-                path : 'public'
-            }
-
+        if (err) {
+            throw err;
         }
+
+        server.route({
+            method : 'GET',
+            path : '/',
+            handler : function (request, reply) {
+                reply.file('./public/index.html');
+            }
+        });
     });
-});
 
 // start the server
 server.start(function () {
 
-    console.log('hapi server up: ');
+    console.log( 'hapi server up: ' );
 
 });
