@@ -10,24 +10,44 @@ server.connection({
     host : 'localhost'
 });
 
-server.register(require('inert'), function (err) {
+// register plug ins
+server.register(
 
-    if (err) {
-        throw err;
-    }
+    // I could just have the one object, but yes
+    // I can also pass an array of objects for each plugin I
+    // am using
+    [
 
-    server.route({
-        method : 'GET',
-        path : '/{param*}',
-        handler : {
-
-            directory : {
-                path : 'public'
-            }
+        // inert plug in
+        {
+            register : require('inert')
 
         }
-    });
-});
+    ],
+
+    // callback
+    function (err) {
+
+        if (err) {
+            throw err;
+        }
+
+        // set a route
+        server.route({
+            method : 'GET',
+            path : '/{param*}',
+            handler : {
+
+                directory : {
+                    path : 'public'
+                }
+
+            }
+        });
+
+    }
+
+);
 
 // start the server
 server.start(function () {
