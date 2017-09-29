@@ -10,6 +10,7 @@ server.connection({
     host : 'localhost'
 });
 
+/*
 // set a route
 server.route({
     method : 'GET',
@@ -20,6 +21,7 @@ server.route({
 
     }
 });
+*/
 
 // set a route
 server.route({
@@ -29,7 +31,7 @@ server.route({
 
         console.log('post request!');
 
-        reply('foobar');
+        reply('Yes this is mr horse.');
 
     }
 });
@@ -43,39 +45,47 @@ server.start(function () {
 
 // post it function
 /*
-var postIt = function (url, data, done, fail) {
-
+var postIt = function (data, url, beforeSend, done, fail) {
+ 
     var xhr = new XMLHttpRequest();
-
+ 
     url = url || 'http://localhost:3000';
     data = data || {};
-    done = done || function (xhr) {};
+    beforeSend = beforeSend || function(xhr,next){
+       next();
+    },
+    done = done || function (xhr) {
+        console.log(xhr);
+    };
     fail = fail || function (xhr) {
         console.log(xhr);
     };
-
+ 
     xhr.open('post', url);
-
+ 
     xhr.onreadystatechange = function () {
-
+ 
         if (this.readyState === 4) {
-
+ 
             if (this.status === 200) {
-
+ 
                 done(this);
-
+ 
             } else {
-
+ 
                 fail(this);
-
+ 
             }
-
+ 
         }
-
+ 
     };
-
-    xhr.send(data);
-
+ 
+    beforeSend(xhr, function(){
+ 
+        xhr.send(data);
+ 
+    });
+ 
 };
-
 */
