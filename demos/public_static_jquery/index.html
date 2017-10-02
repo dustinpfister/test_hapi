@@ -1,1 +1,32 @@
-<h1>Setting up a static server is supper easy with hapi!</h1>
+<!DOCTYPE html>
+<html>
+<head>
+<title>static site with jQuery</title>
+<meta charset="UTF-8">
+</head>
+<body>
+
+<h1>Setting up a static Site with hapi, and jQuery.</h1>
+
+<script src="/js/jquery_3_2_1.js"></script>
+<script>
+
+$.get('/', function(){
+
+    console.log('okay');
+
+}).then(function(res){
+
+    console.log('Ren!');
+    console.log(res);
+
+}).fail(function(res){
+
+    console.log('you idiot!');
+    console.log(res)
+
+});
+
+</script>
+</body>
+</html>
